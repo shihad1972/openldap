@@ -1,5 +1,6 @@
 ---
 
+admin_dn: manager
 do_krb5: false
 do_repl: false
 domain: localdomain

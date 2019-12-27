@@ -3,7 +3,7 @@
 - name: Add LDAP domain object
   ldap_entry:
     dn: "{{ domain_dn }}"
-    bind_dn: "cn={{ admin_dn | default('manager') }}, {{ domain_dn }}"
+    bind_dn: "cn={{ admin_dn }}, {{ domain_dn }}"
     bind_pw: "{{ admin_password }}"
     state: present
     objectClass:
@@ -16,7 +16,7 @@
 - name: Add LDAP OU's
   ldap_entry:
     dn: "ou={{ item }},{{ domain_dn }}"
-    bind_dn: "cn={{ admin_dn | default('manager') }}, {{ domain_dn }}"
+    bind_dn: "cn={{ admin_dn }}, {{ domain_dn }}"
     bind_pw: "{{ admin_password }}"
     state: present
     objectClass:
