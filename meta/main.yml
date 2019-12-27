@@ -1,0 +1,15 @@
+galaxy_info:
+  author: Iain M Conochie
+  description: Install and configure openldap
+  license: GPLv3
+  min_ansible_version: 2.6
+  platforms:
+    - name: debian
+      versions:
+        - 8
+        - 9
+        - 10
+  galaxy_tags:
+    - openldap
+    - slapd
+    - ldap
