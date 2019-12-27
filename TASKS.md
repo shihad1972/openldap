@@ -4,7 +4,7 @@ install.yml
 
 configure-logging.yml
 
-    Configure log level in cn=config (requires slapd to be running)
+    Configure log level in cn=config (requires slapd to be running, variable slapd_log_levels, defaults to stats)
 
 configure-domain.yml
 

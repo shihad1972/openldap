@@ -19,9 +19,10 @@ Role Variables
   - admin_password: password for the admin user
   - ldap_dbtype: ensure that this is set to what you have loaded for a
     database module.
+  - ldap_service_accounts: dict of username / password combinations
+  - ldap_db_number: Number of database in cn=config; defaults to 2
   - slapd_log_levels: Set the log level for slapd. Defaults to stats
   - service_ou: Defaults to 'serviceAccounts'; ou to place service accounts in
-  - ldap_service_accounts: dict of username / password combinations
 
 Dependencies
 ------------
