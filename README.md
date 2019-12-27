@@ -1,4 +1,4 @@
-Role Name
+Openldap
 =========
 
  Install and configure an ldap server installation
@@ -36,7 +36,7 @@ Example Playbook
         domain: example.com
         admin_password: Adm1nP@55w0rd
       roles:
-         - { role: ldap_server  }
+         - { role: openldap  }
 
 License
 -------
