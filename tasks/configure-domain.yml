@@ -1,0 +1,36 @@
+---
+
+- name: create domain directory for database files
+  become: true
+  file:
+    state: directory
+    path: "/var/lib/slapd/{{ domain }}/domain"
+    mode: 0700
+    owner: "{{ ldap_user }}"
+    group: "{{ ldap_group }}"
+
+- name: create accesslog directory for database files
+  become: true
+  file:
+    state: directory
+    path: "/var/lib/slapd/{{ domain }}/accesslog"
+    mode: 0700
+    owner: "{{ ldap_user }}"
+    group: "{{ ldap_group }}"
+
+- name: create initial entry for the domain
+  become: true
+  ldap_entry:
+    dn: "olcDatabase={{ '{' }}{{ ldap_db_number  }}{{ '}' }}{{ ldap_dbtype|default('hdb') }},cn=config"
+    state: present
+    objectClass:
+      - olcDatabaseConfig
+      - "olc{{ ldap_dbtype|default('hdb')|capitalize }}Config"
+    attributes:
+      olcDatabase: "{{ ldap_dbtype|default('hdb') }}"
+      olcDbDirectory: "/var/lib/slapd/{{ domain }}/domain"
+      olcSuffix: "{{ domain_dn }}"
+      olcRootDN: "cn={{ admin_dn | default('manager') }},{{ domain_dn }}"
+      olcRootPW: "{{ admin_password }}"
+      olcDbCheckpoint: 512 30
+  no_log: true

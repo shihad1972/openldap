@@ -1,0 +1,19 @@
+---
+
+do_krb5: false
+do_repl: false
+domain: localdomain
+ldap_user: openldap
+ldap_group: "{{ ldap_user }}"
+slapd_keytab: /etc/ldap/krb5.keytab
+slapd_log_levels: stats
+slapd_mod_path: /usr/lib/ldap
+
+slapd_acls:
+  - "{0}to attrs=userPassword,shadowLastChange,userPKCS12 by self write by anonymous auth by * none"
+  - "{1}to dn.base=\"\" by * read"
+  - "{2}to attrs=shadowLastChange by self write by * read"
+  - "{3}to * by * read"
+
+ldap_db_number: 2
+service_ou: "serviceAccounts"

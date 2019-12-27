@@ -1,0 +1,7 @@
+dn: cn=config
+changeType: modify
+add: olcSaslHost
+olcSaslHost: {{ ansible_fqdn }}
+-
+add: olcSaslRealm
+olcSaslRealm: {{ krb5_realm }}

@@ -1,0 +1,30 @@
+# {{ domain }} domain, {{ ldap_dbtype|default('hdb') }}, config
+dn: olcDatabase={{ ldap_dbtype|default('hdb') }},cn=config
+objectClass: olcDatabaseConfig
+objectClass: olc{{ ldap_dbtype|default('hdb')|capitalize }}Config
+olcDatabase: {{ ldap_dbtype|default('hdb') }}
+olcDbDirectory: /var/lib/slapd/{{ domain }}/domain
+olcSuffix: {{ domain | hostname_to_dn }}
+olcAccess: to attrs=userPassword,shadowLastChange by self write by anonymous auth by dn="cn={{ admin_dn | default('manager') }},{{ domain | hostname_to_dn }}" write by * none
+olcAccess: to dn.base="" by * read
+olcAccess: to * by self write by dn="cn={{ admin_dn | default('manager') }},{{ domain | hostname_to_dn }}" write by * read
+olcRootDN: cn={{ admin_dn | default('manager') }},{{ domain | hostname_to_dn }}
+olcRootPW: {{ admin_password }}
+olcDbCheckpoint: 512 30
+{% if ldap_dbtype is defined %}
+{% if ldap_dbtype != 'mdb' %}
+olcDbConfig: set_cachesize 0 2097152 0
+olcDbConfig: set_lk_max_objects 1500
+olcDbConfig: set_lk_max_locks 1500
+olcDbConfig: set_lk_max_lockers 1500
+{% endif %}
+{% else %}
+olcDbConfig: set_cachesize 0 2097152 0
+olcDbConfig: set_lk_max_objects 1500
+olcDbConfig: set_lk_max_locks 1500
+olcDbConfig: set_lk_max_lockers 1500
+{% endif %}
+olcDbIndex: default sub
+olcDbIndex: uidNumber,gidNumber pres,eq
+olcDbIndex: uid,cn,sn pres,eq,sub
+olcDbIndex: memberUid,uniqueMember,objectClass eq

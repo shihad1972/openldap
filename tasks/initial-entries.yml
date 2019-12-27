@@ -1,0 +1,28 @@
+---
+
+- name: Add LDAP domain object
+  ldap_entry:
+    dn: "{{ domain_dn }}"
+    bind_dn: "cn={{ admin_dn | default('manager') }}, {{ domain_dn }}"
+    bind_pw: "{{ admin_password }}"
+    state: present
+    objectClass:
+      - dcObject
+      - top
+      - organizationalUnit
+    attributes:
+      ou: "{{ domain }}"
+
+- name: Add LDAP OU's
+  ldap_entry:
+    dn: "ou={{ item }},{{ domain_dn }}"
+    bind_dn: "cn={{ admin_dn | default('manager') }}, {{ domain_dn }}"
+    bind_pw: "{{ admin_password }}"
+    state: present
+    objectClass:
+      - top
+      - organizationalUnit
+    attributes:
+      ou: "{{ item }}"
+  with_items: "{{ ou_ldap_entries }}"
+  when: ou_ldap_entries is defined

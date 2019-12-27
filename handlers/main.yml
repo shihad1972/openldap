@@ -1,0 +1,8 @@
+---
+
+- name: restart slapd
+  become: true
+  service:
+    name: slapd
+    state: restarted
+

@@ -1,0 +1,13 @@
+dn: cn=config
+changeType: modify
+add: olcTLSCertificateFile
+olcTLSCertificateFile: /etc/ldap/ssl.crt/{{ ansible_fqdn }}.crt
+-
+add: olcTLSCertificateKeyFile
+olcTLSCertificateKeyFile: /etc/ldap/ssl.key/{{ ansible_fqdn }}.pem
+-
+add: olcTLSCRLCheck
+olcTLSCRLCheck: none
+-
+add: olcTLSVerifyClient
+olcTLSVerifyClient: never

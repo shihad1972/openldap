@@ -1,0 +1,8 @@
+---
+
+- include_tasks: install.yml
+- include_tasks: configure-logging.yml
+- include_tasks: configure-domain.yml
+- include_tasks: initial-entries.yml
+- include_tasks: service-accounts.yml
+  when: ldap_service_accounts is defined
