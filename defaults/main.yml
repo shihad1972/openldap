@@ -18,3 +18,4 @@ slapd_acls:
 
 ldap_db_number: 2
 service_ou: "serviceAccounts"
+do_service_accounts: True
