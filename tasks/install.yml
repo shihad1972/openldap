@@ -8,6 +8,3 @@
       - slapd
       - python-ldap
     state: latest
-  when: '"apt" in ansible_pkg_mgr'
-
-
