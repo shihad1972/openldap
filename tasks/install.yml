@@ -1,5 +1,10 @@
 ---
 
+- name: centos ensure latest slapd version
+  become: true
+  yum: name=openldap-servers state=latest
+  when: '"yum" in ansible_pkg_mgr'
+
 - name: debian ensure latest slapd version
   become: true
   apt:
@@ -8,3 +13,4 @@
       - slapd
       - python-ldap
     state: latest
+  when: '"apt" in ansible_pkg_mgr'
