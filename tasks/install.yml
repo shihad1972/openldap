@@ -11,6 +11,6 @@
     name:
       - ldap-utils
       - slapd
-      - python-ldap
+      - "{{ python_package }}"
     state: latest
   when: '"apt" in ansible_pkg_mgr'
