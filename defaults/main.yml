@@ -19,4 +19,4 @@ slapd_acls:
 ldap_db_number: 2
 service_ou: "serviceAccounts"
 do_service_accounts: True
-python_package: "{{ 'python-ldap' if ansible_distribution_major_version | int <= 10 and apt_update.changed and ansible_distribution == 'Debian' else 'python3-ldap }}"
+python_package: "{{ 'python-ldap' if ansible_distribution_major_version | int <= 10 else 'python3-ldap }}"
