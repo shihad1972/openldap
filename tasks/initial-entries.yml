@@ -12,7 +12,7 @@
       - organizationalUnit
     attributes:
       ou: "{{ domain }}"
-  when: initial_entries
+  when: initial_entries | bool
 
 - name: Add LDAP OU's
   ldap_entry:
