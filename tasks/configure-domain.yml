@@ -33,4 +33,10 @@
       olcRootDN: "cn={{ admin_dn | default('manager') }},{{ domain_dn }}"
       olcRootPW: "{{ admin_password }}"
       olcDbCheckpoint: 512 30
+      olcDbIndex:
+        - objectClass eq
+        - cn,uid eq
+        - uidNumber,gidNumber eq
+        - member,memberUid eq
+        - ipServiceProtocol eq
   no_log: true
