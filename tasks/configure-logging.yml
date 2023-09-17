@@ -2,8 +2,8 @@
 
 - name: configure slapd logging level
   become: true
-  ldap_attr:
+  ldap_attrs:
     dn: cn=config
     state: exact
-    name: olcLogLevel
-    values: "{{ slapd_log_levels }}"
+    attributes: 
+      olcLogLevel: "{{ slapd_log_levels }}"
