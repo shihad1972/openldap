@@ -17,6 +17,8 @@ Role Variables
   - admin_dn: RDN of the LDAP admin, defaults to manager
   - domain: DNS domain used in LDAP
   - admin_password: password for the admin user
+  - initial_entries: adds the base domain object in your directory.
+      set to false if you will be restoring from backup.
   - ldap_dbtype: ensure that this is set to what you have loaded for a
     database module.
   - ldap_service_accounts: dict of username / password combinations
