@@ -18,7 +18,7 @@
     owner: "{{ ldap_user }}"
     group: "{{ ldap_group }}"
 
-- name: create initial entry for the domain
+- name: create filesystem database for the domain
   become: true
   ldap_entry:
     dn: "olcDatabase={{ '{' }}{{ ldap_db_number  }}{{ '}' }}{{ ldap_dbtype|default('hdb') }},cn=config"
