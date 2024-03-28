@@ -22,13 +22,15 @@ configure-domain.yml
 initial-entries.yml
 
     Add domain object in the base of the directory
+        - initial_entires must be set to tru for this task to run
     Add the OU's for branches on the directory tree
-        - ou_ldap_entries: Needs to be defined for this 2nd task to run.
+        - ou_ldap_entries: Needs to be defined for this 2nd task to run
 
 service-accounts.yml
     Create service_ou_dn variable
     Add OU for service accounts
     Create service accounts (dictionary ldap_service_accounts used to populate these)
+        - do_service_accounts must be set to true for this task book to run
 
 Variables:
 
