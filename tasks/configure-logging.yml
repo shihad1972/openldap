@@ -5,5 +5,5 @@
   ldap_attrs:
     dn: cn=config
     state: exact
-    attributes: 
+    attributes:
       olcLogLevel: "{{ slapd_log_levels }}"
